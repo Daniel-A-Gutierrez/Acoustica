@@ -16,7 +16,6 @@ public class NoteParent : MonoBehaviour
     [NonSerialized]
     public bool setup ;
 
-    // Start is called before the first frame update
     public void Awake()
     {
         Origin= GameObject.Find("Origin");
@@ -44,7 +43,7 @@ public class NoteParent : MonoBehaviour
     public void Update()
     {
         float progress = (Time.time - SpawnTime ) / (beatLife/tempo*60);//potential weirdness if not spawning at proper time(ie super speed)
-        transform.position = Vector3.Lerp(Edges.origin.points[position],Edges.terminal.points[position],progress);
+        transform.position = Vector3.LerpUnclamped(Edges.origin.points[position],Edges.terminal.points[position],progress);
         if(progress>1.1f) // fine tune for allowance for hitting notes, etc.
         {
             Destroy(gameObject);
