@@ -27,13 +27,6 @@ public class MidiToBeatmap : MonoBehaviour
                 //n = ien.Current;
                 print(n.NoteNumber);
             }
-            //var cSharpNotes = notes.Where(n => n.NoteName == Melanchall.DryWetMidi.MusicTheory.NoteName.CSharp);
-            //notes.Add(new Note(Melanchall.DryWetMidi.MusicTheory.NoteName.A, 4)
-            //{
-            //    Time = 123,
-            //    Length = 456,
-            //    Velocity = (SevenBitNumber)45
-            //});
         }
 
     }
