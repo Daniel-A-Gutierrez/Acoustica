@@ -39,7 +39,7 @@ public class EdgeManager : MonoBehaviour
             offset++;
             if(offset != 0)
             {
-                print("Offset set to " + offset);
+                //print("Offset set to " + offset);
             }
             Vector3 zero = points[0];
             for (int i = 0; i < 127; i++)
