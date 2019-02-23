@@ -75,11 +75,11 @@ public class EdgeManager : MonoBehaviour
 
         cycle = false;
         cycling = false;
-        horiz_line(2,0,origin,true);
-        horiz_line(2,0,terminal,true);
-        horiz_line(10, -4,terminal);
-        horiz_line(10,4,origin);
-        StartCoroutine(cycletest());
+        horiz_line(10,4,origin,true);
+        horiz_line(10,-4,terminal,true);
+        //horiz_line(10, -4,terminal);
+        //horiz_line(10,4,origin);
+        //StartCoroutine(cycletest());
     }
 
     //function for a horizontal line

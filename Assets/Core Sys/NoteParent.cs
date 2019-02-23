@@ -23,10 +23,10 @@ public class NoteParent : MonoBehaviour
         Edges = Origin.GetComponent<EdgeManager>();
     }
 
-    public void Setup(int position, float SpawnTime,float tempo, int beatLife)
+    public void Setup(int position, float HitTime, float tempo, int beatLife)
     {
         this.position = position;
-        this.SpawnTime = SpawnTime;
+        this.SpawnTime = HitTime- beatLife/tempo;
         this.tempo = tempo;
         this.beatLife = beatLife;
         setup = true;//flag for whether the note was properly set up

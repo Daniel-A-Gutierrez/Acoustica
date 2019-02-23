@@ -16,31 +16,35 @@ public class MidiToBeatmap : MonoBehaviour
     // Start is called before the first frame update
     void somemethod()
     {
-        MidiFile mf = MidiFile.Read("Assets/Midis/e.mid");
+        MidiFile mf = MidiFile.Read("Assets/Midis/multiChannelTest.mid");
         var tempoMap = mf.GetTempoMap();
         foreach(TrackChunk tc in mf.GetTrackChunks())
         {
             using (var notesManager = new NotesManager(tc.Events))
             {
                 NotesCollection notes = notesManager.Notes;
-                IEnumerator<Note> ien = notes.GetEnumerator();
-                foreach(Note n in notes)
+                IOrderedEnumerable<Note> sortedNotes = notes.OrderBy(n => n.Time);
+                foreach(Note n in sortedNotes)
                 {
                     MetricTimeSpan metricTime = TimeConverter.ConvertTo<MetricTimeSpan>(n.Time, tempoMap);
-                    GetComponent<NoteOrigin>().EnqueueNote( "TestNote"/* tc.ChunkId*/,n.NoteNumber, 
-                                metricTime.Milliseconds/1000f, tempoMap.Tempo.AtTime(n.Time).BeatsPerMinute , lifetime:4);
-                    /* for later 
-                    switch(tc.ChunkId)
+                    SequenceTrackNameEvent trackNameEvent = (SequenceTrackNameEvent) tc.Events[0]; //this may fail if the first event isnt a trackname
+                    var bpm = tempoMap.Tempo.AtTime(n.Time).BeatsPerMinute;
+                    string trackName = trackNameEvent.Text;
+                    switch(trackName)
                     {
                         case "TestNote":
-                            GetComponent<NoteOrigin>().EnqueueNote( "TestNote" '''tc.ChunkId''' ,n.NoteNumber, 
-                                metricTime.Milliseconds/1000f, tempoMap.Tempo.AtTime(n.Time).BeatsPerMinute , lifetime:4);
+                            GetComponent<NoteOrigin>().EnqueueNote( trackName ,n.NoteNumber, 
+                                metricTime.TotalMicroseconds/1000000f, tempoMap.Tempo.AtTime(n.Time).BeatsPerMinute , lifetime:4);
+                            break;
+                        case "TestNote2":
+                            GetComponent<NoteOrigin>().EnqueueNote( trackName ,n.NoteNumber, 
+                                metricTime.TotalMicroseconds/1000000f, tempoMap.Tempo.AtTime(n.Time).BeatsPerMinute , lifetime:4);
                             break;
                         default:
-                            Debug.Log("ChunkId not found");
+                            Debug.Log("ChunkId not found: " + trackName);
                             break;
                     }
-                    */
+                    
                 }
             }
         }

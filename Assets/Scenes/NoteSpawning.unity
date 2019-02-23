@@ -458,6 +458,7 @@ GameObject:
   - component: {fileID: 2076137885}
   - component: {fileID: 2076137884}
   - component: {fileID: 2076137886}
+  - component: {fileID: 2076137888}
   m_Layer: 0
   m_Name: Origin
   m_TagString: Untagged
@@ -478,6 +479,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TestNote: {fileID: 4440788098887286179, guid: 6e62d10728c5fdc40a36a50628b75d2b,
+    type: 3}
+  TestNote2: {fileID: 4440788098887286179, guid: cc683337912e9124896da9ec9978add1,
     type: 3}
 --- !u!120 &2076137885
 LineRenderer:
@@ -732,3 +735,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2076137888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076137883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ab06fb3bda20a94084108964678a2a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
