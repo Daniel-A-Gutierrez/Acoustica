@@ -79,7 +79,7 @@ public class EdgeManager : MonoBehaviour
         horiz_line(10,-4,terminal,true);
         //horiz_line(10, -4,terminal);
         //horiz_line(10,4,origin);
-        //StartCoroutine(cycletest());
+        StartCoroutine(cycletest());
     }
 
     //function for a horizontal line
@@ -105,7 +105,7 @@ public class EdgeManager : MonoBehaviour
 
 
     //this function is for looping forward a raw array. 
-    //DO NOT use for the arrays in LINE objects, use the structs function to track the offset.
+    //DO NOT use for the arrays in LINE objects, use the LINE function to track the offset.
     public void Cycle(Vector3[] points)
     {
         Vector3 zero = points[0];
@@ -151,8 +151,9 @@ public class EdgeManager : MonoBehaviour
                         cycle =!cycle;
 
         }
-
     }
+
+
     public void Update()
     {
         if(cycle & !cycling)

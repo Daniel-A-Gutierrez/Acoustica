@@ -13,23 +13,27 @@ using System.Linq;
 [RequireComponent(typeof (NoteOrigin))]
 public class MidiToBeatmap : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void somemethod()
+    void LoadBeatmapFromMidi(string midipath)
     {
-        MidiFile mf = MidiFile.Read("Assets/Midis/multiChannelTest.mid");
+        MidiFile mf = MidiFile.Read(midipath);
         var tempoMap = mf.GetTempoMap();
+        
         foreach(TrackChunk tc in mf.GetTrackChunks())
         {
             using (var notesManager = new NotesManager(tc.Events))
             {
                 NotesCollection notes = notesManager.Notes;
                 IOrderedEnumerable<Note> sortedNotes = notes.OrderBy(n => n.Time);
+                //this may fail if the first event isnt a trackname
+                SequenceTrackNameEvent trackNameEvent = (SequenceTrackNameEvent) tc.Events[0];
+                string trackName = trackNameEvent.Text;
+                if(trackName == "" || trackName == null) {Debug.Log("Trackname is null");}
+
+
                 foreach(Note n in sortedNotes)
                 {
                     MetricTimeSpan metricTime = TimeConverter.ConvertTo<MetricTimeSpan>(n.Time, tempoMap);
-                    SequenceTrackNameEvent trackNameEvent = (SequenceTrackNameEvent) tc.Events[0]; //this may fail if the first event isnt a trackname
                     var bpm = tempoMap.Tempo.AtTime(n.Time).BeatsPerMinute;
-                    string trackName = trackNameEvent.Text;
                     switch(trackName)
                     {
                         case "TestNote":
@@ -51,7 +55,7 @@ public class MidiToBeatmap : MonoBehaviour
     }
     void Start()
     {
-        somemethod();
+        LoadBeatmapFromMidi("Assets/Midis/multiChannelTest.mid");
     }
 
     // Update is called once per frame

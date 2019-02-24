@@ -2,17 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestNote : NoteParent
+public class TestNote : NoteParent 
 {
     // Start is called before the first frame update
-    void Start()
+    public new void Awake()
     {
-        //base.Start();
-        //position = Random.Range(0, 128);
-        //SpawnTime = Time.time;
-        //beatLife = 4;
-        //tempo = 120;
-        //transform.position = Edges.originPoints[position];
+        base.Awake();
+    }
+
+    public new void Update()
+    {
+        base.Update();
+        if(progress >= 1 +  + mstolerance/1000f/(beatLife/tempo*60f) )
+        {   
+            if(State != "missed")
+            {
+                miss();
+            }
+            State = "missed";
+        }
+        else if(progress + mstolerance/1000f/(beatLife/tempo*60f) >= 1 )
+            State = "hittable";
+    }
+
+    public override void miss()
+    {
+
+    }
+
+    
+    public override void hit()
+    {
+        print("Hit Note!");
+        gameObject.SetActive(false);
+        Destroy(gameObject);
+    }
+
+    public override void touch(TouchPhase phase)
+    {
+        print("touched");
+        if(State == "hittable" & phase == TouchPhase.Began)
+        {
+            hit();
+        }
     }
 
 }
