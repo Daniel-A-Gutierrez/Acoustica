@@ -27,7 +27,7 @@ public class NoteParent: MonoBehaviour
         Edges = Origin.GetComponent<EdgeManager>();
     }
 
-    public void Setup(int position, float HitTime, float tempo, int beatLife)
+    public virtual void Setup(int position, float HitTime, float tempo, int beatLife)
     {
         this.position = position;
         this.SpawnTime = HitTime- beatLife/tempo;

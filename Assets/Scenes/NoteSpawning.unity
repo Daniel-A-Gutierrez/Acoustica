@@ -492,10 +492,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67299316ca8deec4badfcdf0bafbd55d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TestNote: {fileID: 4440788098887286179, guid: 6e62d10728c5fdc40a36a50628b75d2b,
-    type: 3}
-  TestNote2: {fileID: 4440788098887286179, guid: cc683337912e9124896da9ec9978add1,
-    type: 3}
+  channel_names:
+  - Tap
+  - Hold
+  - Slide
+  - Miss
+  - Tap Hold
+  - Tap Slide
+  - Tap Release
+  - TestNote
+  - TestNote2
+  prefabs:
+  - {fileID: 4440788098887286179, guid: 6e62d10728c5fdc40a36a50628b75d2b, type: 3}
+  - {fileID: 4440788098887286179, guid: 6e62d10728c5fdc40a36a50628b75d2b, type: 3}
+  - {fileID: 4440788098887286179, guid: 6e62d10728c5fdc40a36a50628b75d2b, type: 3}
+  - {fileID: 4440788098887286179, guid: cc683337912e9124896da9ec9978add1, type: 3}
+  - {fileID: 4440788098887286179, guid: 6e62d10728c5fdc40a36a50628b75d2b, type: 3}
+  - {fileID: 4440788098887286179, guid: 6e62d10728c5fdc40a36a50628b75d2b, type: 3}
+  - {fileID: 4440788098887286179, guid: 6e62d10728c5fdc40a36a50628b75d2b, type: 3}
+  - {fileID: 4440788098887286179, guid: 6e62d10728c5fdc40a36a50628b75d2b, type: 3}
+  - {fileID: 4440788098887286179, guid: 6e62d10728c5fdc40a36a50628b75d2b, type: 3}
 --- !u!120 &2076137885
 LineRenderer:
   m_ObjectHideFlags: 0
