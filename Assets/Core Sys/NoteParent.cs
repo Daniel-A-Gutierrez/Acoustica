@@ -18,6 +18,7 @@ public class NoteParent: MonoBehaviour
     public float mstolerance;
     //awakened, 
     public String State;
+    protected Scoring score;
 
     public void Awake()
     {
@@ -25,9 +26,10 @@ public class NoteParent: MonoBehaviour
         progress = 0f;
         Origin= GameObject.Find("Origin");
         Edges = Origin.GetComponent<EdgeManager>();
+        score = Origin.GetComponent<Scoring>();
     }
 
-    public virtual void Setup(int position, float HitTime, float tempo, int beatLife)
+    public virtual void Setup(int position, float HitTime, float tempo, int beatLife,params object[] args)
     {
         this.position = position;
         this.SpawnTime = HitTime- beatLife/tempo;

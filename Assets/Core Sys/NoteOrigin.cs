@@ -7,7 +7,7 @@ public class NoteOrigin : MonoBehaviour
     //DONT EDIT
     public string[] channel_names = {"TestNote", "TestNote2", "Tap","Hold", "Slide", "Miss", "Tap Hold" , "Tap Slide" , "Tap Release"};
     public GameObject[] prefabs; //index should correspond to channel_names index
-
+    public Scoring score;
     //so our general flow: read from a file to instantiate a few big ol deques of notes.
     //add note objects to the deques back, so that when they are being read, they are read from the front.
     //each frame, check the time, and generate notes from the deque until their start time is past the current time. 
@@ -24,7 +24,7 @@ public class NoteOrigin : MonoBehaviour
     {
         channels =  new Dictionary<string,Queue<GameObject>>(); //the key for a note type and its channel should be identical.
         noteTypes = new Dictionary<string, GameObject>();
-
+        score = GetComponent<Scoring>();
         for(int i = 0 ; i < channel_names.Length ; i++)
         {
             Queue<GameObject> Q = new Queue<GameObject>();
@@ -43,7 +43,6 @@ public class NoteOrigin : MonoBehaviour
     {
         if(channels[channelName] == null) { Debug.Log("Channel Name Not found : " + channelName + "." ) ; }
         GameObject go = Instantiate(noteTypes[channelName],new Vector3(0,0,-100),Quaternion.identity);
-
 //what setup do we do?
         switch(channelName) 
         {
@@ -78,6 +77,7 @@ public class NoteOrigin : MonoBehaviour
                 Debug.Log("Switch statement: case not found");
                 break;
         }
+        score.N ++;
         go.SetActive(false);
         channels[channelName].Enqueue(go);
     }

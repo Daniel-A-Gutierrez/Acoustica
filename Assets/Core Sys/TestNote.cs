@@ -34,6 +34,7 @@ public class TestNote : NoteParent
     public override void hit()
     {
         print("Hit Note!");
+        score.hits ++;
         gameObject.SetActive(false);
         Destroy(gameObject);
     }
