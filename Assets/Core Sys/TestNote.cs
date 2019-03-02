@@ -13,7 +13,7 @@ public class TestNote : NoteParent
     public new void Update()
     {
         base.Update();
-        if(progress >= 1 +  + mstolerance/1000f/(beatLife/tempo*60f) )
+        if(progress >= 1  + mstolerance/1000f/(beatLife/tempo*60f) )
         {   
             if(State != "missed")
             {

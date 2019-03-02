@@ -39,7 +39,7 @@ public class NoteOrigin : MonoBehaviour
     //void func(params object[] stuff) {} -> func('a', "B" , 48.3, 2)
     //void func(int a =0, int b=0, int c=0) {} ->  func(a: 3, c:2)
     //this will need to take variable args at some point.
-    public void EnqueueNote(string channelName ,int position, float spawnTime, float tempo, int lifetime)
+    public void EnqueueNote(string channelName ,int position, float spawnTime, float tempo, int lifetime, object[] args = null)
     {
         if(channels[channelName] == null) { Debug.Log("Channel Name Not found : " + channelName + "." ) ; }
         GameObject go = Instantiate(noteTypes[channelName],new Vector3(0,0,-100),Quaternion.identity);
@@ -59,7 +59,7 @@ public class NoteOrigin : MonoBehaviour
                 go.GetComponent<NoteParent>().Setup(position,spawnTime,tempo,lifetime);
                 break;
             case "Hold":
-                go.GetComponent<NoteParent>().Setup(position,spawnTime,tempo,lifetime);
+                go.GetComponent<HoldNote>().Setup(position,spawnTime,tempo,lifetime,args);
                 break;
             case "Miss":
                 go.GetComponent<NoteParent>().Setup(position,spawnTime,tempo,lifetime);

@@ -32,7 +32,7 @@ public class MidiToBeatmap : MonoBehaviour
                 }
                 catch(InvalidCastException e)
                 {
-                    Debug.Log(e);
+                    Debug.Log(e.ToString());
                     continue;
                 }
                 string trackName = trackNameEvent.Text;
@@ -56,8 +56,10 @@ public class MidiToBeatmap : MonoBehaviour
                                 metricTime.TotalMicroseconds/1000000f, tempoMap.Tempo.AtTime(n.Time).BeatsPerMinute , lifetime:4);
                             break;
                         case "Hold":
+                            MetricTimeSpan duration = TimeConverter.ConvertTo<MetricTimeSpan>(n.Length,tempoMap);
+                            object[] args = {duration.TotalMicroseconds/1000000f};
                             GetComponent<NoteOrigin>().EnqueueNote( trackName ,n.NoteNumber, 
-                                metricTime.TotalMicroseconds/1000000f, tempoMap.Tempo.AtTime(n.Time).BeatsPerMinute , lifetime:4);
+                                metricTime.TotalMicroseconds/1000000f, tempoMap.Tempo.AtTime(n.Time).BeatsPerMinute , lifetime:4, args);
                             break;
                         case "Slide":
                             GetComponent<NoteOrigin>().EnqueueNote( trackName ,n.NoteNumber, 

@@ -29,16 +29,18 @@ public class NoteParent: MonoBehaviour
         score = Origin.GetComponent<Scoring>();
     }
 
-    public virtual void Setup(int position, float HitTime, float tempo, int beatLife,params object[] args)
+    //args[] = { (int) duration (hold note), }
+    //duration is in beats. its a float.
+    public virtual void Setup(int position, float SpawnTime, float tempo, int beatLife, object[] args = null)
     {
         this.position = position;
-        this.SpawnTime = HitTime- beatLife/tempo;
+        this.SpawnTime = SpawnTime- beatLife/tempo;
         this.tempo = tempo;
         this.beatLife = beatLife;
         State = "setup";
     }
 
-    public void OnEnable()
+    public virtual void OnEnable()
     {
         if(Edges.origin.offset!=0)// match the position to point relative to current cycle offset
         {
@@ -51,9 +53,8 @@ public class NoteParent: MonoBehaviour
     1 : activated, progressing towards terminal
     2 : hit : plays animation, notifies something, destroys self
     3 : missed :  continues moving, changes color or plays other animation, notifies something */
-    public void Update()
+    public virtual void Update()
     {
-    
         progress = (Time.time - SpawnTime ) / (beatLife/tempo*60);      //potential weirdness if not spawning at proper time(ie super speed)
         transform.position = Vector3.LerpUnclamped(Edges.origin.points[position],Edges.terminal.points[position],progress); 
         if(progress>2.0f) // fine tune for allowance for hitting notes, etc.
