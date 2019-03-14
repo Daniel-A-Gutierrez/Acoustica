@@ -33,7 +33,7 @@ public class TestNote : NoteParent
     
     public override void hit()
     {
-        print("Hit Note!");
+        //print("Hit Note!");
         score.hits ++;
         gameObject.SetActive(false);
         Destroy(gameObject);
@@ -41,7 +41,7 @@ public class TestNote : NoteParent
 
     public override void touch(TouchPhase phase)
     {
-        print("touched");
+        //print("touched");
         if(State == "hittable" & phase == TouchPhase.Began)
         {
             hit();

@@ -25,5 +25,17 @@ public class TakeInput : MonoBehaviour
                 col.gameObject.GetComponent<NoteParent>().touch(TouchPhase.Began);
             }
         }
+        if (Input.GetMouseButton(0))
+        {
+            Collider2D[] overlaps = Physics2D.OverlapCircleAll(
+                Camera.main.ScreenToWorldPoint(Input.mousePosition)
+                , touchRadius
+                );//,LayerMask.NameToLayer("note"));
+            foreach (Collider2D col in overlaps)
+            {
+                col.gameObject.GetComponent<NoteParent>().touch(TouchPhase.Stationary);
+            }
+        }
+
     }
 }
