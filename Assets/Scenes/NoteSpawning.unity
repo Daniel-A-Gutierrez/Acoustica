@@ -1030,6 +1030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ab06fb3bda20a94084108964678a2a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  filename: Stranger Beatmap
 --- !u!114 &2076137889
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ using System.Linq;
 [RequireComponent(typeof (NoteOrigin))]
 public class MidiToBeatmap : MonoBehaviour
 {
+    public string filename;
     void LoadBeatmapFromMidi(string midipath)
     {
         MidiFile mf = MidiFile.Read(midipath);
@@ -92,7 +93,7 @@ public class MidiToBeatmap : MonoBehaviour
     //dependent on enqueue note, cannot be in awake. 
     void Start()
     {
-        LoadBeatmapFromMidi("Assets/Midis/Quaoar Beatmap.mid");
+        LoadBeatmapFromMidi("Assets/Midis/" + filename + ".mid");
     }
 
     // Update is called once per frame
