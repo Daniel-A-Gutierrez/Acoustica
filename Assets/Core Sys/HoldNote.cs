@@ -6,6 +6,7 @@ public class HoldNote : NoteParent
 {
     public float duration;
     float progress2;
+    public float timeHit;
     private int touchticker = 0;
     private int lasttick = -1;
     // Start is called before the first frame update
@@ -81,6 +82,11 @@ public class HoldNote : NoteParent
         if(State == "started")
         {
             ends[1] = Vector3.Lerp(Edges.origin.points[position], Edges.terminal.points[position], progress);
+            if( (int)(100f*(Time.time - timeHit)) % (int)((6000f/tempo)) == 0 )
+            {
+                score.hits ++;
+            }
+
         }
         else
         {
@@ -99,6 +105,7 @@ public class HoldNote : NoteParent
     public override void hit()
     {
         //add more points or something
+        score.hits ++;
         Destroy(gameObject);
     }
     public override void touch(TouchPhase phase)
@@ -106,6 +113,7 @@ public class HoldNote : NoteParent
         if (State == "hittable" && phase == TouchPhase.Began)
         {
             State = "started";
+            timeHit = Time.time;
             touchticker++;
         }
         else if(State == "started" && phase == TouchPhase.Stationary )

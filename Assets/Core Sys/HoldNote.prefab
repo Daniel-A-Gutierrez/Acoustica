@@ -77,9 +77,10 @@ MonoBehaviour:
   SpawnTime: 0
   tempo: 0
   beatLife: 0
-  mstolerance: 100
+  mstolerance: 0
   State: 
   duration: 0
+  timeHit: 0
 --- !u!120 &2539625059423535528
 LineRenderer:
   m_ObjectHideFlags: 0

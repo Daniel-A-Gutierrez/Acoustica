@@ -99,7 +99,7 @@ MonoBehaviour:
   SpawnTime: 0
   tempo: 60
   beatLife: 4
-  mstolerance: 100
+  mstolerance: 960
   State: 
 --- !u!61 &8566818805223594420
 BoxCollider2D:

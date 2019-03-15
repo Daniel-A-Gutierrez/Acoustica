@@ -48,18 +48,22 @@ public class NoteOrigin : MonoBehaviour
         {
             case "TestNote":
                 go.GetComponent<NoteParent>().Setup(position,spawnTime,tempo,lifetime);
+                score.N ++;
                 break;
             case "TestNote2":
                 go.GetComponent<NoteParent>().Setup(position,spawnTime,tempo,lifetime);
+                score.N ++;
                 break;
             case "Tap":
                 go.GetComponent<NoteParent>().Setup(position,spawnTime,tempo,lifetime);
+                score.N ++;
                 break;
             case "Slide":
                 go.GetComponent<NoteParent>().Setup(position,spawnTime,tempo,lifetime);
                 break;
             case "Hold":
                 go.GetComponent<HoldNote>().Setup(position,spawnTime,tempo,lifetime,args);
+                score.N += (int)((float)(args[0])/(tempo/60));
                 break;
             case "Miss":
                 go.GetComponent<NoteParent>().Setup(position,spawnTime,tempo,lifetime);
@@ -77,7 +81,7 @@ public class NoteOrigin : MonoBehaviour
                 Debug.Log("Switch statement: case not found");
                 break;
         }
-        score.N ++;
+        
         go.SetActive(false);
         channels[channelName].Enqueue(go);
     }
